@@ -30,7 +30,7 @@ class MainHandler(tornado.web.RequestHandler):
     Basic hello world implementation of a main handler class
     """
     def get(self):
-        self.write("Hello, world")
+        self.render("home.html", title="RMS")
 
 
 def make_app():
@@ -38,9 +38,13 @@ def make_app():
     Create the main app, run based on an empty URL
     :return: The tornado webapplication
     """
-    return tornado.web.Application([
-        (r"/", MainHandler),
-    ])
+    template_path = 'templates/'
+    return tornado.web.Application(
+        [
+            (r"/", MainHandler),
+        ],
+        template_path=template_path,
+    )
 
 # Run the things!
 if __name__ == "__main__":

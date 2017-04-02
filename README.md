@@ -19,3 +19,7 @@
 9. Visit the following to access the website: [http://127.0.0.1:8888/](http://127.0.0.1:8888/)
 
 10. To stop the application use CTRL+C.
+
+## Other Notes
+
+If you want to use an IDE like PyCharm, then to get it to recognize Tornado is installed you need to follow the instructions [here](http://stackoverflow.com/questions/34520291/pycharm-cannot-find-the-packages-in-virtualenv) and add the virtual environment interpreter to the list of interpreters.  That should allow PyCharm to see all your packages installed in venv. 
