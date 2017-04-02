@@ -39,9 +39,11 @@ def make_app():
     :return: The tornado webapplication
     """
     template_path = 'templates/'
+    static_path = 'static/'
     return tornado.web.Application(
         [
             (r"/", MainHandler),
+            (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': static_path})
         ],
         template_path=template_path,
     )
