@@ -6,15 +6,15 @@
 
 3. Clone the repo with ```git clone https://github.com/ip2176/RMS.git```.
 
-4. Next use pip to install virtualenv. ```pip3 install virtualenv```. You may not need the 3 in pip3 depending on your python setup explained in step 2. Once installed, create a new virtualenv by running the following command: ```virtualenv venv --no-site-packages```.
+4. Next use pip to install virtualenv. ```pip3 install virtualenv```. You may not need the 3 in pip3 depending on your python setup explained in step 2. Once installed, create a new virtualenv by running the following command: ```virtualenv venv --no-site-packages```.  Make sure to run this command at the root of the project (right inside the RMS folder).
 
 5. Whenever you're about to begin developing code, you need to jump into your virtualenv which can be activated as follows for mac: ```source venv/bin/activate```. For windows, use this command: ```venv\Scripts\activate```. Both operating systems can deactivate it with the command ```deactivate```. You no longer need to use commands like python3 or pip3; from now on just use the original python or pip.
 
 6. Start your virtual environment for your operating system according to the instructions in step 5.
 
-7. For windows, inside the virtual environment, run ```pip install tornado```.
+7. For windows, inside the virtual environment, run ```pip install tornado``` to install Tornado.
 
-8. Start the tornado app by running ```python main.py```.
+8. Start the Tornado app by running ```python main.py```.
 
 9. Visit the following to access the website: [http://127.0.0.1:8888/](http://127.0.0.1:8888/)
 
