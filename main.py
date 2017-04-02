@@ -11,7 +11,7 @@ def signal_handler(signum, frame):
     Handle signals like CTRL C and exit properly
     """
     global is_closing
-    print('exiting...')
+    print('Exiting ...')
     is_closing = True
 
 
@@ -22,7 +22,7 @@ def try_exit():
     global is_closing
     if is_closing:
         tornado.ioloop.IOLoop.instance().stop()
-        print('exit success')
+        print('Exit success')
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -52,5 +52,5 @@ if __name__ == "__main__":
     # this isn't built in
     tornado.ioloop.PeriodicCallback(try_exit, 100).start()
 
-    print('Starting web server on 127.0.0.1:8888...')
+    print('Starting web server on http://127.0.0.1:8888/ ...')
     tornado.ioloop.IOLoop.instance().start()
