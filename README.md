@@ -4,7 +4,7 @@
 
 2. Install Python if you don't already own it. For Mac users, your default will be 2.7 which won't work with this project. Specifically, we want Python 3.5+ which can be found [here](https://www.python.org/downloads/). Since Mac comes with a pre-installed 2.7 that is necessary for some other applications, you'll need to run commands like ```python3 manage.py runserver``` until step 12. This also applies to pip (pip3).
 
-3. Clone the repo with ```git clone https://github.com/```.
+3. Clone the repo with ```git clone https://github.com/ip2176/RMS.git```.
 
 4. Next use pip to install virtualenv. ```pip3 install virtualenv```. You may not need the 3 in pip3 depending on your python setup explained in step 2. Once installed, create a new virtualenv by running the following command: ```virtualenv venv --no-site-packages```.
 
