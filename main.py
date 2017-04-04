@@ -1,6 +1,7 @@
 import tornado.ioloop
 import tornado.web
 import signal
+from financial_aid import FinancialAidHandler
 
 # Global variable used to figure out if we are exiting the app or not
 is_closing = False
@@ -43,6 +44,7 @@ def make_app():
     return tornado.web.Application(
         [
             (r"/", MainHandler),
+            (r"/financial-aid/", FinancialAidHandler),
             (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': static_path})
         ],
         template_path=template_path,

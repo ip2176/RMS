@@ -6,3 +6,6 @@ venv/
 # Idea directory #
 .idea/
 
+# Pycache #
+__pycache__/
+
