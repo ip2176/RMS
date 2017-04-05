@@ -1,14 +1,19 @@
+import signal
+import os
+
 import tornado.ioloop
 import tornado.web
-import signal
-from financial_aid import FinancialAidHandler
-from courses import CoursesHandler
-from admissions import AdmissionsHandler
-from registrar import RegistrarHandler
-from reservation import ReservationsHandler
+import tornado.template
+from subsystems.admissions.handler import AdmissionsHandler
+from subsystems.courses.handler import CoursesHandler
+from subsystems.financial_aid.handler import FinancialAidHandler
+from subsystems.reservation.handler import ReservationsHandler
+from subsystems.registrar.handler import RegistrarHandler
 
 # Global variable used to figure out if we are exiting the app or not
 is_closing = False
+
+template_loader = tornado.template.Loader(os.path.join(os.path.dirname(__file__), "templates"))
 
 
 def signal_handler(signum, frame):
@@ -35,7 +40,8 @@ class MainHandler(tornado.web.RequestHandler):
     Basic hello world implementation of a main handler class
     """
     def get(self):
-        self.render("home.html", title="RMS")
+        result = template_loader.load("home.html").generate(title="[RMS] Home")
+        self.write(result)
 
 
 def make_app():
@@ -43,7 +49,8 @@ def make_app():
     Create the main app, run based on an empty URL
     :return: The tornado webapplication
     """
-    template_path = 'templates/'
+    template_path = os.path.join(os.path.dirname(__file__), "templates")
+
     static_path = 'static/'
     return tornado.web.Application(
         [

@@ -12,7 +12,7 @@
 
 6. Start your virtual environment for your operating system according to the instructions in step 5.
 
-7. For windows, inside the virtual environment, run ```pip install tornado``` to install Tornado.
+7. For windows, inside the virtual environment, run ```pip install -r Packages.txt``` to install all the needed packages.
 
 8. Start the Tornado app by running ```python main.py```.
 
