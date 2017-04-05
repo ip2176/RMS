@@ -25,13 +25,20 @@ class PaymentForm(Form):
     """
     Tiny form to get a payment details from the user
     """
-    amount = IntegerField(u'Payment Amount', validators=[DataRequired()])
-    card_number = StringField(u'Card Number', validators=[DataRequired(), Length(min=16, max=16)])
+    amount = IntegerField(u'Payment Amount', validators=[DataRequired()], render_kw={"placeholder": "$"})
+    card_number = StringField(u'Card Number', validators=[DataRequired(), Length(min=16, max=16)],
+                              render_kw={"placeholder": "4242-4242-4242-4242"})
     # expiration = DateField(u'Expiration', validators=[DataRequired()])
-    ccv = StringField(u'CCV', validators=[DataRequired(), Length(min=3, max=3)])
-    name_on_card = StringField(u'Name on Card', validators=[DataRequired(), Length(min=3, max=30)])
-    address_street_1 = StringField(u'Street Address 1', validators=[DataRequired(), Length(min=5, max=50)])
-    address_street_2 = StringField(u'Street Address 2 (optional)', validators=[Length(min=5, max=50)])
-    address_city = StringField(u'City', validators=[DataRequired(), Length(min=3, max=40)])
-    address_state = SelectField(u'State', choices=STATE_CHOICES, validators=[DataRequired()])
-    address_zip = StringField(u'Zip Code', validators=[DataRequired(), Length(min=5, max=9)])
+    ccv = StringField(u'CCV', validators=[DataRequired(), Length(min=3, max=3)], render_kw={"placeholder": "456"})
+    name_on_card = StringField(u'Name on Card', validators=[DataRequired(), Length(min=3, max=30)],
+                               render_kw={"placeholder": "Jane Doe"})
+    address_street_1 = StringField(u'Street Address 1', validators=[DataRequired(), Length(min=5, max=50)],
+                                   render_kw={"placeholder": "1 Main st"})
+    address_street_2 = StringField(u'Street Address 2 (optional)', validators=[Length(min=5, max=50)],
+                                   render_kw={"placeholder": "Apt 2"})
+    address_city = StringField(u'City', validators=[DataRequired(), Length(min=3, max=40)],
+                               render_kw={"placeholder": "Portland"})
+    address_state = SelectField(u'State', choices=STATE_CHOICES, validators=[DataRequired()],
+                                render_kw={"placeholder": "State"})
+    address_zip = StringField(u'Zip Code', validators=[DataRequired(), Length(min=5, max=9)],
+                              render_kw={"placeholder": "12345"})

@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <style type="text/css">
+    .container {
+        width: 500px;
+        clear: both;
+    }
+    .container input {
+        width: 50%;
+        clear: both;
+    }
+
+    </style>
 </head>
 <body>
     <h1>Welcome to the Financial Aid Subsystem<img src="/static/gentlemanparrot.gif"> </h1>
-    <p>Your current tuition balance is: {{ balance }}</p>
+    <p>Your current tuition balance is: ${{ balance }}</p>
     {% if payment_success %}
-        <p>Thank you for submitting a payment of {{ amount }}</p>
-        <p>Your new balance is: {{ balance }}</p>
+        <p>Thank you for submitting a payment of ${{ amount }}</p>
+        <p>Your new balance is: ${{ balance }}</p>
         <p><a href="/financial-aid/">Make another payment</a></p>
     {%  else %}
-        <ul>
-            <form enctype="multipart/form-data" action="/financial-aid/" method="post">
-                {% for field in form %}
-                    <li>{% raw field.label %}&nbsp;{% raw field %}</li>
-                {% end %}
-                <input type="submit"/>
-            </form>
-        </ul>
+            <div class="container">
+                <form enctype="multipart/form-data" action="/financial-aid/" method="post">
+                    {% for field in form %}
+                        {% raw field.label %} <br>
+                        {% raw field %}
+                        <p></p>
+                    {% end %}
+                    <br>
+                    <input type="submit"/>
+                </form>
+            </div>
     {% end %}
     <p><a href="/">Home</a></p>
 </body>
