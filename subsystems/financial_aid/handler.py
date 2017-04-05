@@ -27,7 +27,6 @@ class FinancialAidHandler(web.RequestHandler):
         global payment_success
         form = PaymentForm(self.request.arguments)
         if form.validate():
-            # self.write(str(form.data['a'] + form.data['b']))
             balance = balance - form.data['amount']
             payment_success = True
             result = template_loader.load("financial_aid.html").generate(title="[RMS] Financial Aid",
