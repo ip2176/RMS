@@ -18,11 +18,12 @@
 <body>
     <h1>Welcome to the Financial Aid Subsystem<img src="/static/gentlemanparrot.gif"> </h1>
     <p>Your current tuition balance is: ${{ balance }}</p>
+    <form action="" method="post">
+        <p> Make a payment here: <button type="submit" value="true" name="make_payment">Make a Payment</button></p>
+    </form>
     {% if payment_success %}
         <p>Thank you for submitting a payment of ${{ amount }}</p>
-        <p>Your new balance is: ${{ balance }}</p>
-        <p><a href="/financial-aid/">Make another payment</a></p>
-    {%  else %}
+    {%  elif make_payment %}
             <div class="container">
                 <form enctype="multipart/form-data" action="/financial-aid/" method="post">
                     {% for field in form %}
