@@ -14,6 +14,15 @@
     }
 
     </style>
+    <script>
+        function sendHeartBeat() {
+            ws.send("Financial Aid Heartbeat");
+            setTimeout(sendHeartBeat, 1000);
+        }
+
+        ws = new WebSocket("ws://localhost:8888/heartbeat");
+        ws.onopen = sendHeartBeat;
+    </script>
 </head>
 <body>
     <h1>Welcome to the Financial Aid Subsystem<img src="/static/gentlemanparrot.gif"> </h1>

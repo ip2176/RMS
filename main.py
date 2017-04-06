@@ -4,6 +4,7 @@ import os
 import tornado.ioloop
 import tornado.web
 import tornado.template
+import tornado.websocket
 from subsystems.admissions.handler import AdmissionsHandler
 from subsystems.courses.handler import CoursesHandler
 from subsystems.financial_aid.handler import FinancialAidHandler
@@ -35,6 +36,23 @@ def try_exit():
         print('Exit success')
 
 
+class HeartBeatReceiver(tornado.websocket.WebSocketHandler):
+    """
+    Basic heart beat handler to receive messages from open pages
+    """
+    def open(self):
+        print("Opening heartbeat connection")
+
+    def on_message(self, message):
+        print(message)
+
+    def on_close(self):
+        print("Closing heartbeat connection")
+
+    def check_origin(self, origin):
+        return True
+
+
 class MainHandler(tornado.web.RequestHandler):
     """
     Basic hello world implementation of a main handler class
@@ -60,6 +78,7 @@ def make_app():
             (r"/admissions/", AdmissionsHandler),
             (r"/registrar/", RegistrarHandler),
             (r"/reservations/", ReservationsHandler),
+            (r"/heartbeat", HeartBeatReceiver),
             (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': static_path})
         ],
         template_path=template_path,
