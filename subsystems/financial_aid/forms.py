@@ -34,7 +34,7 @@ class PaymentForm(Form):
                                render_kw={"placeholder": "Jane Doe"})
     address_street_1 = StringField(u'Street Address 1', validators=[DataRequired(), Length(min=5, max=50)],
                                    render_kw={"placeholder": "1 Main st"})
-    address_street_2 = StringField(u'Street Address 2 (optional)', validators=[Length(min=5, max=50)],
+    address_street_2 = StringField(u'Street Address 2 (optional)', validators=[Length(min=0, max=50)],
                                    render_kw={"placeholder": "Apt 2"})
     address_city = StringField(u'City', validators=[DataRequired(), Length(min=3, max=40)],
                                render_kw={"placeholder": "Portland"})
