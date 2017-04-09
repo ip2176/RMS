@@ -14,11 +14,33 @@
 
 7. For windows, inside the virtual environment, run ```pip install -r Packages.txt``` to install all the needed packages.
 
-8. Start the Tornado app by running ```python main.py```.
+8. Start the Tornado app by running ```python main.py``` on a console.  Please change directory into the root folder of the RMS application to accomplish this.
 
 9. Visit the following to access the website: [http://127.0.0.1:8888/](http://127.0.0.1:8888/)
 
 10. To stop the application use CTRL+C.
+
+## Testing the Heartbeat
+
+To see the heartbeat and fault recovery of the system working, please follow the following steps.
+
+1. With the server started, navigate to the financial aid portion of the website: [http://127.0.0.1:8888/financial-aid/](http://127.0.0.1:8888/financial-aid/)
+
+2. Watch the terminal the server was started in.  It should periodically get "Financial Aid Heartbeat" (one per second).
+
+3. There is a 1/10 chance per second that the financial aid app will crash.  When the system does crash, the terminal will display "Financial aid quit unexpectedly".
+
+4. You will notice the page reloads at this point.  This happens because the backup httpserver is switched in for the main httpserver.  The main httpserver is restarted and positioned as the backup httpserver for the next time the application crashes.
+
+5. You will see that the heartbeat messages continue on as normal after the page reloads.
+
+## Frameworks
+
+1. Python 3.5 +
+2. Tornado 4.4.3
+3. wtforms-tornado 0.0.2
+
+All packages and their required versions are included in the Packages.txt file.
 
 ## Other Notes
 
