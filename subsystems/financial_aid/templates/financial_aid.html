@@ -15,13 +15,28 @@
 
     </style>
     <script>
+        var sendHeartBeats = true;
         function sendHeartBeat() {
-            ws.send("Financial Aid Heartbeat");
-            setTimeout(sendHeartBeat, 1000);
+            if (sendHeartBeats) {
+                ws.send("Financial Aid Heartbeat");
+                setTimeout(sendHeartBeat, 1000);
+            }
         }
 
         ws = new WebSocket("ws://localhost:8888/heartbeat");
         ws.onopen = sendHeartBeat;
+        ws.onmessage = function(event){
+            if (event.data == "stop"){
+                sendHeartBeats = false;
+
+                document.write("Financial Aid is currently down, switching process ...");
+            }
+
+            if (event.data == "start"){
+                sendHeartBeats = true;
+                location.reload();
+            }
+        }
     </script>
 </head>
 <body>
@@ -34,7 +49,7 @@
         <p>Thank you for submitting a payment of ${{ amount }}</p>
     {%  elif make_payment %}
             <div class="container">
-                <form enctype="multipart/form-data" action="/financial-aid/" method="post">
+                <form name="paymentForm" enctype="multipart/form-data" action="/financial-aid/" method="post">
                     {% for field in form %}
                         {% raw field.label %} <br>
                         {% raw field %}
